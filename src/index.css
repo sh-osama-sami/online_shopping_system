@@ -118,6 +118,32 @@ body {
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
+.hide {
+  display: none;
+}
+ 
+.valid{
+  color: green;
+
+}
+
+.invalid{
+  color: red;
+}
+
+.instructions{
+  font-size: 12px;
+  font-weight: lighter;
+  color: #ff1313;
+}
+.offscreen {
+  position: absolute;
+  left: -9999px;
+  top: auto;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
 .signup-container h2 {
   font-size: 24px;
   margin-bottom: 20px;
@@ -344,4 +370,14 @@ body {
   flex: 0 0 100px;
   text-align: right;
   color: #777;
+}
+
+/* 8. unauthorized */
+.unauthorized-container {
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }

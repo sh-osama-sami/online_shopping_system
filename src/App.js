@@ -2,11 +2,13 @@ import Items from './components/Items';
 import {useState } from 'react'
 import Navigation from './components/Navigation';
 import Home from './components/home';
-import Signup from './components/signup';
-import Login from './components/Login';
+import Signup from './features/auth/signup';
+import Login from './features/auth/Login';
 import Cart from './components/Cart';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import PurchaseHistory from './components/PurchaseHistory';
+import RequiredAuth from './features/auth/RequiredAuth';
+import Unauthorised from './features/auth/Unauthorised';
 
 const name = "item";
 function App() {
@@ -88,22 +90,30 @@ function App() {
     setItems(updatedCartItems);
   };
   return (
-    <Router>
-      <Navigation />
+  
       <Routes>
+      {/* public routes  */}
         <Route  path='/' element={<Home items={items} handleAddItemToCart={ handleAddToCart}/>} />
          <Route path='/register' element={<Signup/>} />
          <Route path='/login' element={<Login/>} />
-         <Route path='/cart' element={<Cart cartItems={items} handleRemoveFromCart={handleRemoveFromCart}/>} />
-         <Route path='/history' element={<PurchaseHistory />} />
+          <Route path='/unauthorized' element={< Unauthorised/>} />
 
+    {/* private routes  */}
+      <Route element = {<RequiredAuth allowedRoles={["admin"]} />}>
+      <Route path='/cart' element={<Cart cartItems={items} handleRemoveFromCart={handleRemoveFromCart}/>} />
+      {/* <Route path='history' element={<PurchaseHistory />}  /> */}
+      </Route>
+
+      <Route element = {<RequiredAuth allowedRoles={["user"]} />}>
+      <Route path='/history' element={<PurchaseHistory />} />
+      </Route>
 
          { /*<Route path="/services" component={Services} />
         <Route path="/contact" component={Contact} />
         <Route component={NotFound} />
          <Route path="/cart" component={Cart} /> */}
       </Routes>
-    </Router>
+  
     
   );
   }
