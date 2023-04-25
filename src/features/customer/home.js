@@ -1,5 +1,5 @@
 import React from 'react'
-import Items from './Items'
+import Items from '../../components/Items'
 import { Outlet } from 'react-router-dom'
 const Home = ({items , handleAddItemToCart}) => {
   

@@ -5,8 +5,10 @@ const RequiredAuth = ({ allowedRoles }) => {
   const { auth } = useAuth();
   const location = useLocation();
 
-  if (auth?.user) {
-    if (auth?.roles?.find((role) => allowedRoles.includes(role))) {
+  if (auth?.email) {
+    const roles = Array.isArray(auth.role) ? auth.role : [auth.role];
+
+    if (roles.find((role) => allowedRoles.includes(role))) {
       // <Navigate to = "/login" state={{ from: location }}  replace/>
       // return <Navigate to={`/login?redirect=${location.pathname}`} />
       return <Outlet />;

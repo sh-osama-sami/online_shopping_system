@@ -12,6 +12,9 @@ function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
+  const [role, setRole] = useState("");
+
+
   const [errMsg, setErrMsg] = useState("");
   const [success, setSuccess] = useState(false);
 
@@ -30,9 +33,21 @@ function Login() {
     setPassword("");
     setSuccess(true);
 
-    const roles = ["admin"];
-    setAuth({ user: email, pwd: password , roles  });
-    navigate(from , {replace: true});
+    const role = "admin";
+
+    if (role === "admin") {
+    setAuth({  email,  password , role  });
+    navigate('/admin' , {replace: true});
+    }
+    else if (role ==="user") {
+    setAuth({  email,  password , role  });
+    navigate('/user' , {replace: true});
+    }
+    else if (role === "company") {
+    setAuth({  email,  password , role  });
+    navigate('/company' , {replace: true});
+    }
+
     // const response = await axios.post(LOGIN_URL,
     //             JSON.stringify({ user, pwd }),
     //             {
@@ -106,7 +121,7 @@ function Login() {
             <br />
             <span className="line">
               {/*put router link here*/}
-              <a href="/register">Sign Up</a>
+              <a href="/">Sign Up</a>
             </span>
           </p>
         </div>

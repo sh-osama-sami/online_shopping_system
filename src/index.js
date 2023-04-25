@@ -12,6 +12,7 @@ root.render(
     <BrowserRouter>
       <AuthProvider>
         <Navigation />
+        
         <Routes>
           <Route path="/*" element={<App />} />
         </Routes>
