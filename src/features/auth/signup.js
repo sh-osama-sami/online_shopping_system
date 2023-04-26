@@ -9,7 +9,21 @@ import useAuth from "../../hooks/useAuth";
 const Email_REGEX = /^[A-z][A-z0-9-_]{3,23}@[A-z0-9-_]{3,23}\.[A-z]{2,3}$/;
 const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/;
 
+async function signup(userData, url) {
+  const response = await fetch(url, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(userData),
+  });
+
+  const data = await response.json();
+  return { data, status: response.status };
+}
+
 function Signup() {
+
   const emailRef = useRef();
   const errRef = useRef();
   const { setAuth } = useAuth();
@@ -47,9 +61,10 @@ function Signup() {
 
   const navigate = useNavigate();
 
-  const handleSignup = (event) => {
+  const handleSignup = async (event) => {
     event.preventDefault();
-    //client side validation
+  
+    // Client-side validation
     const v1 = Email_REGEX.test(email);
     const v2 = PWD_REGEX.test(password);
     if (!v1 || !v2) {
@@ -60,56 +75,48 @@ function Signup() {
       setSuccess(true);
       console.log(email);
       console.log(password);
-      // const roles = ["admin"];
       console.log(role);
-
-      // setAuth({   email,  password ,  role });
-      // navigate('/admin' , {replace:true});}
-
-      if (role === "admin") {
-        setAuth({ email, password, role });
-        navigate("/admin", { replace: true });
+  
+      try {
+        const userData = { email, password, role };
+        let response;
+  
+        if (role === "admin") {
+          // response = await signup(userData, "http://localhost:8080/admin/signup");
+        } else if (role === "user") {
+          response = await signup(userData, "http://localhost:4000/signup");
+          console.log("user signed request : ", response)
+  
+        } else if (role === "company") {
+          // response = await signup(userData, "http://localhost:8080/company/signup");
+        }
+        if (response.data.code === 500) {
+          setErrMsg("Username is already taken");
+          setSuccess(false);
+        } else {
+        
+        if (role === "admin") {
+          navigate("/admin", { replace: true });
+          setAuth({email,password,role});
+          
+        } else if (role === "user") {
+          navigate("/user", { replace: true });
+          setAuth({email,password,role});
+          console.log("user signed up here")
+        } else if (role === "company") {
+          navigate("/company", { replace: true });
+          setAuth({email,password,role});
+        }
+        }
+      } catch (error) {
+        // Show an error message
+        console.error("Signup failed:", error.message);
+        setErrMsg("Signup failed");
+        setSuccess(false);
       }
-      else if (role ==="user") {
-        setAuth({  email,  password , role  });
-        navigate('/user' , {replace: true});
-        }
-        else if (role === "company") {
-        setAuth({  email,  password , role  });
-        navigate('/company' , {replace: true});
-        }
-    
     }
-
-    //server side validation
-    // try {
-    //     const response = await axios.post(REGISTER_URL,
-    //         JSON.stringify({ user, pwd }),
-    //         {
-    //             headers: { 'Content-Type': 'application/json' },
-    //             withCredentials: true
-    //         }
-    //     );
-    //     console.log(response?.data);
-    //     console.log(response?.accessToken);
-    //     console.log(JSON.stringify(response))
-    //     setSuccess(true);
-    //     //clear state and controlled inputs
-    //     //need value attrib on inputs for this
-    //     setUser('');
-    //     setPwd('');
-    //     setMatchPwd('');
-    // } catch (err) {
-    //     if (!err?.response) {
-    //         setErrMsg('No Server Response');
-    //     } else if (err.response?.status === 409) {
-    //         setErrMsg('Username Taken');
-    //     } else {
-    //         setErrMsg('Registration Failed')
-    //     }
-    //     errRef.current.focus();
-    // }
   };
+  
 
   return (
     <>
