@@ -16,8 +16,9 @@ export const axiosClient = axios.create({
 export const axiosSelling = axios.create({
     baseURL: 'http://localhost:8080/AdminService-1.0-SNAPSHOT/api',
     headers: { 'Content-Type': 'application/json' ,
-    Cookie: `JSESSIONID=${sessionId}`},
-    withCredentials: true
+    // Cookie: `JSESSIONID=${sessionId}`
+},
+    // withCredentials: true
    
                     
    

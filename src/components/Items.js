@@ -15,7 +15,7 @@
 // export default Items
 
 import React, { useState, useEffect } from "react";
-import { axiosSelling}  from "../api/axios";
+import { axiosClient, axiosSelling}  from "../api/axios";
 
 import Product from "./Product";
 
@@ -29,7 +29,7 @@ const Items = () => {
   useEffect(() => {
     const fetchItems = async () => {
       try {
-        const response = await axiosSelling.get("/selling/viewproducts");
+        const response = await axiosClient.get("/getAllProducts");
         
 
         if (response.status === 200) {
