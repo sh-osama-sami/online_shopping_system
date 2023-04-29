@@ -34,7 +34,7 @@ function Product({ product  }) {
       <div className="product">
         <img src={"https://images.ctfassets.net/w7pbeqztoxtb/7sge6zdXHluaoINg8pRasS/ffdc70725a760c85ab5c00b5d0919937/00000090060521_C1N1_NA.jpg?fm=webp"}  className="product-image" />
         <div className="product-details">
-          <h3 className="product-title">name: {name}</h3>
+          <h3 className="product-title"> {name}</h3>
           <p className="product-description">quantity: {quantity}</p>
           <p className="product-price">${price}</p>
           <button className="product-btn" onClick={handleAddToCart}>Add to Cart</button>
