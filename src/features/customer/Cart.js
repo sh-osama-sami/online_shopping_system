@@ -1,6 +1,31 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useState } from 'react';
+import axios from '../../api/axios';
+function Cart() {
+  const [cartItems, setCartItems] = useState([]);
+  useEffect (()=>{
+    const fetchCartItems = async () => {
+      try {
+        const response = await axios.get("/customerOrder");
+        if (response.status === 200) {
+          setCartItems(response.data);
+        } else {
+          console.error("Error fetching items:", response);
+        }
+      } catch (error) {
+        console.error("Error fetching items:", error);
+      }
+    };
+    fetchCartItems();
+  },[]);
 
-function Cart({ cartItems, handleRemoveFromCart }) {
+  const
+  handleRemoveFromCart = (item) => {
+    const updatedCartItems = cartItems.filter(
+      (cartItem) => cartItem.id !== item.id
+    );
+    setCartItems(updatedCartItems);
+  };
   const cartTotal = cartItems.reduce(
     (total, item) => total + item.price * item.quantity,
     0

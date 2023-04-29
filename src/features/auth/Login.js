@@ -1,7 +1,10 @@
 import React, { useState, useRef, useEffect } from "react";
 import useAuth from "../../hooks/useAuth";
 import { Link, useNavigate, useLocation } from "react-router-dom";
-import axios from "axios";
+import axios  from "../../api/axios";
+import axiosSelling from "../../api/axios"
+
+
 
 async function login(userData, url) {
   const response = await axios.post(url, userData, {
@@ -16,7 +19,9 @@ function Login() {
   const { setAuth } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
-  const from = location.state?.from || "/";
+  // const from = location.state?.from || "/";
+  const [username, setusername] = useState("");
+  const usernameRef = useRef();
   const emailRef = useRef();
   const errRef = useRef();
 
@@ -39,28 +44,40 @@ function Login() {
   
     try {
       const userData = { email, password };
+      const userData2 = { username, password  };
       let response;
   
       if (role === "admin") {
         // response = await login(userData, "http://localhost:8080/admin/login");
       } else if (role === "user") {
-        response = await login(userData, "http://localhost:4000/signin");
+        // response = await login(userData, "http://localhost:4000/signin");
+        response = await axios.post("/signin", userData);
+      
         console.log("user logged in request : ", response);
       } else if (role === "company") {
         // response = await login(userData, "http://localhost:8080/company/login");
+        response = await axiosSelling.post("/selling/login", userData2);
+        // localStorage.setItem("token", response.data.token);
+        // const token = jwt.sign({ id: 1, name: 'John Doe' }, 'mysecretkey');
+        // const decoded = jwt.verify(token, 'mysecretkey');
+        // console.log(decoded);
+        // localStorage.setItem('token', token);
+
       }
   
       if (response.data.error) {
         setErrMsg(response.data.error);
       } else if (response.status === 200) {
-        setAuth({ email, password , role});
-  
+       
         if (role === "admin") {
           navigate("/admin", { replace: true });
+          setAuth({email,password,role});
         } else if (role === "user") {
           navigate("/user", { replace: true });
+          setAuth({email,password,role});
         } else if (role === "company") {
           navigate("/company", { replace: true });
+          setAuth({email,password,role});
         }
       } else {
         setErrMsg("Login failed");
@@ -77,6 +94,16 @@ function Login() {
     <h2>Login to your account</h2>
     <form onSubmit={handleLogin}>
     <div className="form-group">
+    <label htmlFor="email">username</label>
+    <input
+    type="username"
+    id="username"
+    placeholder="Enter username"
+    value={username}
+    onChange={(event) => setusername(event.target.value)}
+    required
+    ref={usernameRef}
+    />
     <label htmlFor="email">Email address</label>
     <input
     type="email"
@@ -110,6 +137,8 @@ function Login() {
     <option value="">Select Role</option>
     <option value="admin">Admin</option>
     <option value="user">User</option>
+    <option value="company">Company</option>
+
     </select>
     </div>
     <button type="submit" className="login-btn">

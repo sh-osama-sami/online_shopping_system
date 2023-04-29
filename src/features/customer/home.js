@@ -10,7 +10,7 @@ const Home = ({items , handleAddItemToCart}) => {
       <p>Check out our latest products:</p>
       
      
-    <Items  items={items} handleAddToCart={handleAddItemToCart} />
+    <Items   />
       
      
        

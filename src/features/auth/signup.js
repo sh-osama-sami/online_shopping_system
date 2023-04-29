@@ -4,6 +4,8 @@ import { faCheck, faTimes } from "@fortawesome/free-solid-svg-icons";
 import { faInfoCircle } from "@fortawesome/free-solid-svg-icons";
 import { useNavigate } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
+import axios from "../../api/axios";
+import axiosSelling from "../../api/axios"
 
 // const USER_REGEX = /^[A-z][A-z0-9-_]{3,23}$/;
 const Email_REGEX = /^[A-z][A-z0-9-_]{3,23}@[A-z0-9-_]{3,23}\.[A-z]{2,3}$/;
@@ -80,15 +82,22 @@ function Signup() {
       try {
         const userData = { email, password, role };
         let response;
-  
+        let response2;
         if (role === "admin") {
           // response = await signup(userData, "http://localhost:8080/admin/signup");
         } else if (role === "user") {
-          response = await signup(userData, "http://localhost:4000/signup");
+          // response = await signup(userData, "http://localhost:4000/signup");
+          response = await axios.post("/signup", userData);
+         response2= await axios.post("/signin", userData);
+         
           console.log("user signed request : ", response)
-  
+          console.log("user login request : ", response2)
         } else if (role === "company") {
-          // response = await signup(userData, "http://localhost:8080/company/signup");
+          response = await axiosSelling.post("/signup", userData);
+          
+         response2= await axiosSelling.post("/signin", userData);
+            const token = response2.data.token;
+          localStorage.setItem("token", token);
         }
         if (response.data.code === 500) {
           setErrMsg("Username is already taken");

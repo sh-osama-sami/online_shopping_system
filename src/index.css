@@ -390,6 +390,7 @@ body {
   background-color: #fff;
   border-radius: 5px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
 }
 
 .admin-home-container h2 {
@@ -411,4 +412,61 @@ body {
 .admin-home-container li {
   margin-bottom: 10px;
 }
+/* 10. add product */
+.add-product-container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.add-product-container h2 {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.add-product-container form {
+  display: flex;
+  flex-direction: column;
+}
+
+.add-product-container label {
+  font-size: 16px;
+  margin-bottom: 5px;
+}
+
+.add-product-container input {
+  margin-bottom: 10px;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+.add-product-container button {
+  display: block;
+  width: 100%;
+  margin-top: 20px;
+  background-color: #333;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 10px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.add-product-container button:hover {
+  background-color: #666;
+}
+
+
+
+
+
+/* 11. edit product */
+
+
 
