@@ -4,7 +4,7 @@ import { faCheck, faTimes } from "@fortawesome/free-solid-svg-icons";
 import { faInfoCircle } from "@fortawesome/free-solid-svg-icons";
 import { useNavigate } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
-import {axiosClient ,axiosSelling}  from "../../api/axios";
+import { axiosClient, axiosSelling } from "../../api/axios";
 
 // const USER_REGEX = /^[A-z][A-z0-9-_]{3,23}$/;
 const Email_REGEX = /^[A-z][A-z0-9-_]{3,23}@[A-z0-9-_]{3,23}\.[A-z]{2,3}$/;
@@ -24,7 +24,6 @@ async function signup(userData, url) {
 }
 
 function Signup() {
-
   const emailRef = useRef();
   const errRef = useRef();
   const { setAuth } = useAuth();
@@ -40,6 +39,8 @@ function Signup() {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [validConfirmPassword, setValidConfirmPassword] = useState(false);
 
+  const [address, setAddress] = useState("");
+
   const [errMsg, setErrMsg] = useState("");
   const [success, setSuccess] = useState(false);
 
@@ -51,6 +52,9 @@ function Signup() {
     setValidPassword(PWD_REGEX.test(password));
   }, [password]);
 
+  useEffect(() => {
+    setAddress(address);
+  }, [address]);
   useEffect(() => {
     setValidPassword(PWD_REGEX.test(password));
     setValidConfirmPassword(password === confirmPassword);
@@ -64,7 +68,7 @@ function Signup() {
 
   const handleSignup = async (event) => {
     event.preventDefault();
-  
+
     // Client-side validation
     const v1 = Email_REGEX.test(email);
     const v2 = PWD_REGEX.test(password);
@@ -77,7 +81,7 @@ function Signup() {
       console.log(email);
       console.log(password);
       console.log(role);
-  
+
       try {
         const userData = { email, password, role };
         let response;
@@ -87,34 +91,32 @@ function Signup() {
         } else if (role === "user") {
           // response = await signup(userData, "http://localhost:4000/signup");
           response = await axiosClient.post("/signup", userData);
-         response2= await axiosClient.post("/signin", userData);
-         
-          console.log("user signed request : ", response)
-          console.log("user login request : ", response2)
+          response2 = await axiosClient.post("/signin", userData);
+
+          console.log("user signed request : ", response);
+          console.log("user login request : ", response2);
         } else if (role === "company") {
           response = await axiosSelling.post("/signup", userData);
-          
-         response2= await axiosSelling.post("/signin", userData);
-            const token = response2.data.token;
+
+          response2 = await axiosSelling.post("/signin", userData);
+          const token = response2.data.token;
           localStorage.setItem("token", token);
         }
         if (response.data.code === 500) {
           setErrMsg("Username is already taken");
           setSuccess(false);
         } else {
-        
-        if (role === "admin") {
-          navigate("/admin", { replace: true });
-          setAuth({email,password,role});
-          
-        } else if (role === "user") {
-          navigate("/user", { replace: true });
-          setAuth({email,password,role});
-          console.log("user signed up here")
-        } else if (role === "company") {
-          navigate("/company", { replace: true });
-          setAuth({email,password,role});
-        }
+          if (role === "admin") {
+            navigate("/admin", { replace: true });
+            setAuth({ email, password, role });
+          } else if (role === "user") {
+            navigate("/user", { replace: true });
+            setAuth({ email, password, role });
+            console.log("user signed up here");
+          } else if (role === "company") {
+            navigate("/company", { replace: true });
+            setAuth({ email, password, role });
+          }
         }
       } catch (error) {
         // Show an error message
@@ -124,7 +126,6 @@ function Signup() {
       }
     }
   };
-  
 
   return (
     <>
@@ -254,6 +255,19 @@ function Signup() {
             >
               Must match the first password input field.
             </p>
+            {role === "user" && (
+              <div className="form-group">
+                <label htmlFor="address">Address: </label>
+                <input
+                  className="form-control"
+                  id="address"
+                  type="text"
+                  placeholder="Enter address"
+                  value={address}
+                  onChange={(event) => setAddress(event.target.value)}
+                />
+              </div>
+            )}
           </div>
           <button type="submit" className="signup-btn">
             Sign up
