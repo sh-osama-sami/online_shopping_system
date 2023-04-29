@@ -1,12 +1,13 @@
 import React, { useEffect } from 'react';
 import { useState } from 'react';
-import axios from '../../api/axios';
+import {axiosClient ,axiosSelling}  from "../../api/axios";
+
 function Cart() {
   const [cartItems, setCartItems] = useState([]);
   useEffect (()=>{
     const fetchCartItems = async () => {
       try {
-        const response = await axios.get("/customerOrder");
+        const response = await axiosClient.get("/customerOrder");
         if (response.status === 200) {
           setCartItems(response.data);
         } else {

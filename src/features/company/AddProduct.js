@@ -1,7 +1,8 @@
 
 import React from 'react'
 import { useState } from 'react';
-import axiosSelling from '../../api/axios';
+import { axiosSelling}  from "../../api/axios";
+
 const AddProduct = () => {
     const [name, setName] = useState('');
     const [price, setPrice] = useState(0);

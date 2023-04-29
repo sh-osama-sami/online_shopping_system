@@ -12,7 +12,7 @@ import PurchaseHistory from "./features/customer/PurchaseHistory";
 import RequiredAuth from "./features/auth/RequiredAuth";
 import Unauthorised from "./features/auth/Unauthorised";
 import AdminHome from "./features/admin/AdminHome";
-import axios from "./api/axios";
+import axiosClient, { axiosSelling } from "./api/axios";
 import CompanyHome from "./features/company/CompanyHome";
 import AddProduct from "./features/company/AddProduct";
 const name = "item";
@@ -22,7 +22,7 @@ function App() {
   useEffect(() => {
     const fetchItems = async () => {
       try {
-        const response = await axios.get("/product/viewproducts");
+        const response = await axiosSelling.get("/product/viewproducts");
         
 
         if (response.status === 200) {

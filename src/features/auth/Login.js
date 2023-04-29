@@ -1,19 +1,19 @@
 import React, { useState, useRef, useEffect } from "react";
 import useAuth from "../../hooks/useAuth";
 import { Link, useNavigate, useLocation } from "react-router-dom";
-import axios  from "../../api/axios";
-import axiosSelling from "../../api/axios"
+import {axiosClient ,axiosSelling}  from "../../api/axios";
 
 
 
-async function login(userData, url) {
-  const response = await axios.post(url, userData, {
-    headers: {
-      "Content-Type": "application/json",
-    },
-  });
-  return { data: response.data, status: response.status };
-}
+
+// async function login(userData, url) {
+//   const response = await axios.post(url, userData, {
+//     headers: {
+//       "Content-Type": "application/json",
+//     },
+//   });
+//   return { data: response.data, status: response.status };
+// }
 
 function Login() {
   const { setAuth } = useAuth();
@@ -51,7 +51,7 @@ function Login() {
         // response = await login(userData, "http://localhost:8080/admin/login");
       } else if (role === "user") {
         // response = await login(userData, "http://localhost:4000/signin");
-        response = await axios.post("/signin", userData);
+        response = await axiosClient.post("/signin", userData);
       
         console.log("user logged in request : ", response);
       } else if (role === "company") {

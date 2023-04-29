@@ -15,7 +15,8 @@
 // export default Items
 
 import React, { useState, useEffect } from "react";
-import axiosSelling from "../api/axios";
+import { axiosSelling}  from "../api/axios";
+
 import Product from "./Product";
 
 const Items = () => {

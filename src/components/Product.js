@@ -1,6 +1,6 @@
 import React from 'react'
 import { useState } from 'react';
-import axiosSelling from '../api/axios';
+import { axiosSelling}  from "../api/axios";
 import useAuth from '../hooks/useAuth';
 function Product({ product  }) {
   const auth = useAuth();
