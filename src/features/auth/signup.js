@@ -84,13 +84,15 @@ function Signup() {
 
       try {
         const userData = { email, password, role };
+        const userData2 = { email, password, role ,address };
+
         let response;
         let response2;
         if (role === "admin") {
           // response = await signup(userData, "http://localhost:8080/admin/signup");
         } else if (role === "user") {
           // response = await signup(userData, "http://localhost:4000/signup");
-          response = await axiosClient.post("/signup", userData);
+          response = await axiosClient.post("/signup", userData2);
           response2 = await axiosClient.post("/signin", userData);
 
           console.log("user signed request : ", response);
