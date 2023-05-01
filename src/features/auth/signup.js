@@ -34,7 +34,8 @@ function Signup() {
   const [password, setPassword] = useState("");
   const [validPassword, setValidPassword] = useState(false);
 
-  const [role, setRole] = useState("admin");
+  const[username , setUsername]=useState("");
+  const [role, setRole] = useState("user");
 
   const [confirmPassword, setConfirmPassword] = useState("");
   const [validConfirmPassword, setValidConfirmPassword] = useState(false);
@@ -90,6 +91,17 @@ function Signup() {
         let response2;
         if (role === "admin") {
           // response = await signup(userData, "http://localhost:8080/admin/signup");
+         const username = email;
+          
+          response = await axiosSelling.post("/admin/signup", {
+            username:username,
+            password:password
+          });
+          response2 = await axiosSelling.post("/admin/login", {
+            username:username,
+            password:password
+          });
+
         } else if (role === "user") {
           // response = await signup(userData, "http://localhost:4000/signup");
           response = await axiosClient.post("/signup", userData2);
@@ -98,11 +110,18 @@ function Signup() {
           console.log("user signed request : ", response);
           console.log("user login request : ", response2);
         } else if (role === "company") {
-          response = await axiosSelling.post("/signup", userData);
+         const username = email;
 
-          response2 = await axiosSelling.post("/signin", userData);
-          const token = response2.data.token;
-          localStorage.setItem("token", token);
+          response = await axiosSelling.post("/selling/signup", {
+            username:username,
+            password : password
+          });
+          response2 = await axiosSelling.post("/selling/login", {
+            username:username,
+            password:password
+          });
+          // const token = response2.data.token;
+          // localStorage.setItem("token", token);
         }
         if (response.data.code === 500) {
           setErrMsg("Username is already taken");
@@ -211,7 +230,9 @@ function Signup() {
               Must contain at least one uppercase letter, one lowercase letter,
               one number, and one special character.
             </p>
+          
             <div className="form-group">
+              
               <label htmlFor="role">Role: </label>
               <select
                 className="form-control"
@@ -221,9 +242,9 @@ function Signup() {
                   setRole(event.target.value);
                 }}
               >
-                <option value="admin">admin</option>
+                {/* <option value="admin">admin</option> */}
                 <option value="user">user</option>
-                <option value="company">company</option>
+                {/* <option value="company">company</option> */}
               </select>
             </div>
           </div>
@@ -257,7 +278,7 @@ function Signup() {
             >
               Must match the first password input field.
             </p>
-            {role === "user" && (
+          
               <div className="form-group">
                 <label htmlFor="address">Address: </label>
                 <input
@@ -269,7 +290,7 @@ function Signup() {
                   onChange={(event) => setAddress(event.target.value)}
                 />
               </div>
-            )}
+        
           </div>
           <button type="submit" className="signup-btn">
             Sign up

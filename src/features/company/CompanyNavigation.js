@@ -13,7 +13,10 @@ const CompanyNavigation = () => {
           <li>
             <Link className="nav-link" to="/addProduct">add new product </Link>
           </li>
-      
+          <li>
+          <Link className="nav-link" to="/ViewInstock">view in stock products </Link>
+
+          </li>
           
         </ul>
       </nav>

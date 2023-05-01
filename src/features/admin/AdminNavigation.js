@@ -7,16 +7,25 @@ const AdminNavigation = () => {
    <nav className="navbar">
    {/* <h1 className="logo">My Store</h1> */}
    <ul  className="nav-links">
-     <li>
+     {/* <li>
        <Link className="nav-link" to="/admin">Home</Link>
-     </li>
-     <li>
-       <Link className="nav-link" to="/admin/dashboard"> Dashboard</Link>
-     </li>
+     </li> */}
+
       <li>
       <Link className="nav-link" to="/admin/users">Users list</Link>
       </li>
-   
+   <li>
+     <Link className="nav-link" to="/admin/createcompany">Create company</Link>
+   </li>
+    <li>
+    <Link className="nav-link" to="/admin/createshipping">Create Shipping company</Link>
+    </li>
+    <li>
+    <Link className="nav-link" to="/admin/listshipping">List Shipping Companies</Link>
+    </li>
+    <li>
+    <Link className="nav-link" to="/admin/listselling">List Selling Companies</Link>
+    </li>
      
    </ul>
  </nav>

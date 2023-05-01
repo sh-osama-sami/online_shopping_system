@@ -48,6 +48,7 @@ body {
   background-image: url(../images/e1ee2a0b5f34fb9abb50ef6a06497ffd.jpg);
   background-size: cover;
   background-repeat: no-repeat;
+  background-attachment: scroll;
 }
 .home-container {
   max-width: 800px;
@@ -338,6 +339,11 @@ body {
   margin: 0 auto;
   padding: 20px;
 }
+.previous-purchases-container h3 {
+  font-size: 24px;
+  margin-bottom: 20px;
+  color: #333;
+}
 
 .purchase {
   display: flex;
@@ -534,5 +540,233 @@ body {
 
 /* 11. edit product */
 
+/* 12. view in stock products */
+.stock-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.card {
+  background-color: #e7e4e4;
+
+  width: 300px;
+  margin: 20px;
+  box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.2);
+  transition: transform 0.3s ease-in-out;
+}
+
+.card:hover {
+  transform: scale(1.05);
+}
+
+.card img {
+  width: 100%;
+}
+
+.card-details {
+  padding: 10px;
+}
+
+.card-details h2 {
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+ h1 {
+  font-size: 1.7rem;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.card-details p {
+  margin: 0;
+  font-size: 1rem;
+  color: #333;
+}
+
+.card-details .price {
+  font-weight: bold;
+  color: #333;
+}
 
 
+.stock-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.product-card {
+  display: flex;
+  background-color: #e7e4e4;
+  flex-direction: column;
+  align-items: center;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 10px;
+  margin: 10px;
+  width: 300px;
+  box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.25);
+}
+
+.product-card img {
+  width: 200px;
+  height: auto;
+  margin-bottom: 10px;
+}
+
+.product-card h2 {
+  font-size: 20px;
+  margin: 5px 0;
+}
+
+.product-card p {
+  font-size: 16px;
+  margin: 5px 0;
+}
+
+.product-card button {
+  margin-top: 10px;
+  padding: 5px 10px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.product-card button:hover {
+  background-color: #0069d9;
+}
+
+/*12. cerate company admin screen */
+.create-company-container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.create-company-container h2 {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.create-company-container form {
+  display: flex;
+  flex-direction: column;
+}
+
+.create-company-container label {
+  font-size: 16px;
+  margin-bottom: 5px;
+}
+
+.create-company-container input {
+  margin-bottom: 10px;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+.create-company-container button {
+  display: block;
+  width: 100%;
+  margin-top: 20px;
+  background-color: #333;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 10px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.create-company-container button:hover {
+  background-color: #666;
+}
+
+/* 13. view company admin screen */
+
+.covered-locations {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-bottom: 1rem;
+}
+
+.covered-locations label {
+  margin-right: 1rem;
+}
+
+.covered-locations input[type="checkbox"] {
+  margin-right: 0.5rem;
+}
+
+.covered-locations input[type="checkbox"]:checked + span {
+  font-weight: bold;
+}
+
+.covered-locations div {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+/* Shipping Company */
+
+.shipping-company-container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.shipping-company-container h2 {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.shipping-company-container form {
+  display: flex;
+  flex-direction: column;
+}
+
+.shipping-company-container label {
+  font-size: 16px;
+  margin-bottom: 5px;
+}
+
+
+.shipping-company-container input {
+  margin-bottom: 10px;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+.shipping-company-container button {
+  display: block;
+  width: 100%;
+  margin-top: 20px;
+  background-color: #333;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 10px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.shipping-company-container button:hover {
+  background-color: #666;
+}
+
+/* 14. view shipping company admin screen */

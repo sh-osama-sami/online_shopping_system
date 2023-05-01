@@ -7,7 +7,9 @@ const AddProduct = () => {
     const [name, setName] = useState('');
     const [price, setPrice] = useState(0);
     const [quantity, setQuantity] = useState('');
-    const [imgurl, setImg] = useState('');
+    const [imageUrl, setImg] = useState('');
+    const [successMessage, setSuccessMessage] = useState('');
+
     const handleNameChange = (event) => {
       setName(event.target.value);
     };
@@ -32,9 +34,9 @@ const AddProduct = () => {
           name,
           price,
           quantity,
-          imgurl
+          imageUrl
         });
-  
+        setSuccessMessage('Product created successfully!');
         console.log('Product created:', response.data);
   
         // Clear form fields
@@ -44,6 +46,7 @@ const AddProduct = () => {
         setImg('');
       } catch (error) {
         console.error('Error creating product:', error.message);
+        setSuccessMessage('Product created successfully!');
       }
     };
   
@@ -67,10 +70,11 @@ const AddProduct = () => {
         </label>
         <label>
           imag url:
-          <input type="text" value={imgurl} onChange={handleImgChange} />
+          <input type="text" value={imageUrl} onChange={handleImgChange} />
         </label>
         <br />
         <button type="submit">Create Product </button>
+        {successMessage && <p>{successMessage}</p>}
         </div>
       </form>
       </div>

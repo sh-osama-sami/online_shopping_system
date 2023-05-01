@@ -4,7 +4,7 @@ import Cookies from 'js-cookie';
 
 const sessionId = Cookies.get('JSESSIONID');
 export const axiosClient = axios.create({
-    baseURL: 'https://589f-41-36-162-222.ngrok-free.app',
+    baseURL: 'https://customerservice-lepf.onrender.com/',
     headers: {
         'Content-type': 'application/json',
          Cookie: `JSESSIONID=${sessionId}`
@@ -14,11 +14,11 @@ export const axiosClient = axios.create({
     
 });
 export const axiosSelling = axios.create({
-    baseURL: 'http://localhost:8080/AdminService-1.0-SNAPSHOT/api',
+    baseURL: 'https://8a75-197-39-201-230.ngrok-free.app/AdminService-1.0-SNAPSHOT/api',
     headers: { 'Content-Type': 'application/json' ,
-    // Cookie: `JSESSIONID=${sessionId}`
+    Cookie: `JSESSIONID=${sessionId}`
 },
-    // withCredentials: true
+    withCredentials: true
    
                     
    
