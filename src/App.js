@@ -7,7 +7,6 @@ import Signup from "./features/auth/signup";
 import Login from "./features/auth/Login";
 import Cart from "./features/customer/Cart";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import PurchaseHistory from "./features/customer/PurchaseHistory";
 import RequiredAuth from "./features/auth/RequiredAuth";
 import Unauthorised from "./features/auth/Unauthorised";
 import AdminHome from "./features/admin/AdminHome";
@@ -18,10 +17,11 @@ import ViewInStockProducts from "./features/company/ViewInStockProducts";
 import CreateCompany from "./features/admin/AddCompany";
 import CreateShipping from "./features/admin/AddShipping";
 import ShippingCompany from "./features/shipping/ShippingHome";
-import ShippedPurchases from "./features/customer/ShippedPurchases";
+import ShippedPurchases from "./features/customer/ShippedOrders";
 import ShippingCompanies from "./features/admin/ListShipping";
 import Users from "./features/admin/Users";
 import SellingCompanies from "./features/admin/ListSelling";
+import NotShippedPurchases from "./features/customer/NotShippedPurchases";
 const name = "item";
 function App() {
   const [items, setItems] = useState([ ]);
@@ -86,8 +86,10 @@ function App() {
             />
           }
         />
-        <Route path="/user/history" element={<PurchaseHistory />} />
+        {/* <Route path="/user/history/Shipped" element={<PurchaseHistory />} /> */}
         <Route path="/user/history/Shipped" element={<ShippedPurchases />} />
+        <Route path="/user/history/notShipped" element={<NotShippedPurchases />} />
+
 
       </Route>
 

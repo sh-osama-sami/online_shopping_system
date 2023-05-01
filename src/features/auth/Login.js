@@ -38,10 +38,7 @@ function Login() {
 
   const handleLogin = async (event) => {
     event.preventDefault();
-    if (role === "shipping") {
-      navigate("/shipping", { replace: true });
-      setAuth({ email, password, role });
-    }
+   
     try {
       const userData = { email, password };
       const userData2 = { username, password };
@@ -60,20 +57,27 @@ function Login() {
 
         console.log("user logged in request : ", response);
       } else if (role === "company") {
+        // jaKF54QY
         // response = await login(userData, "http://localhost:8080/company/login");
         // const username = email;
         response = await axiosSelling.post("/selling/login", {
           username: username,
           password: password,
         });
+        console.log("user logged in request : ", response);
         // localStorage.setItem("token", response.data.token);
         // const token = jwt.sign({ id: 1, name: 'John Doe' }, 'mysecretkey');
         // const decoded = jwt.verify(token, 'mysecretkey');
         // console.log(decoded);
         // localStorage.setItem('token', token);
       } else if (role === "shipping") {
-        navigate("/shipping", { replace: true });
-        setAuth({ email, password, role });
+        response = await axiosSelling.post("/shipping/login", {
+          username: username,
+          password: password,
+        });
+        console.log("user logged in request : ", response);
+        // navigate("/shipping", { replace: true });
+        // setAuth({ email, password, role });
       }
 
       if (response.data.error) {

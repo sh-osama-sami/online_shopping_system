@@ -29,7 +29,7 @@ const Items = () => {
   useEffect(() => {
     const fetchItems = async () => {
       try {
-        const response = await axiosClient.get("/getAllProducts");
+        const response = await axiosSelling.get("/selling/viewproducts");
         
 
         if (response.status === 200) {

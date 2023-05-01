@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { axiosClient } from '../../api/axios';
-import HistoryNavigation from './HistoryNavigation';
 
-function PurchaseHistory() {
+function NotShippedPurchases() {
   const [purchases, setPurchases] = useState([]);
 
  const fetchOldPurchases = async () => {
@@ -44,10 +43,23 @@ function PurchaseHistory() {
 
   return (
     <div className="previous-purchases-container">
-      <h2>Previous Purchases</h2>
-      <HistoryNavigation/>
+      <h2>not yet Shipped Purchases</h2>
+      {purchases.map((purchase) => (
+        <div key={purchase.id} className="purchase">
+          <div className="purchase-details">
+            {purchase.products.map((product) => (
+              <div key={product.id} className="product">
+                <div className="product-name">{product.name}</div>
+                <div className="product-price">${product.price}</div>
+                <div className="product-quantity">{product.quantity}</div>
+              </div>
+            ))}
+            <div className="purchase-total">total :${purchase.total}</div>
+          </div>
+        </div>  
+      ))}
     </div>
   );
 }
 
-export default PurchaseHistory;
+export default NotShippedPurchases;

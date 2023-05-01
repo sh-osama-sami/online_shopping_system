@@ -3,11 +3,11 @@ import { axiosSelling } from '../../api/axios';
 
 const ViewInStockProducts = () => {
     const [products, setProducts] = useState([]);
-
+//test
     useEffect(() => {
       const fetchProducts = async () => {
         try {
-          const response = await axiosSelling.get('/selling/viewproducts');
+          const response = await axiosSelling.get('/selling/getSellingCompanyProducts');
           setProducts(response.data);
         } catch (error) {
           console.error(error);

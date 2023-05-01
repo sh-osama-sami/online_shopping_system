@@ -4,7 +4,7 @@ import { axiosClient, axiosSelling}  from "../api/axios";
 import useAuth from '../hooks/useAuth';
 function Product({ product  }) {
   const auth = useAuth();
-    const { id , isAvailableForSale, name, price, quantity ,quantitySold ,SellingCompany_id  } = product;
+    const { id , isAvailableForSale, name, price, quantity ,quantitySold ,SellingCompany_id ,ImageUrl  } = product;
   
     const [cartItems, setCartItems] = useState([]);
     const handleAddToCart = async (product) => {
@@ -32,7 +32,7 @@ function Product({ product  }) {
   
     return (
       <div className="product">
-        <img src={"https://images.ctfassets.net/w7pbeqztoxtb/7sge6zdXHluaoINg8pRasS/ffdc70725a760c85ab5c00b5d0919937/00000090060521_C1N1_NA.jpg?fm=webp"}  className="product-image" />
+        <img src={ImageUrl}  className="product-image" />
         <div className="product-details">
           <h3 className="product-title"> {name}</h3>
           <p className="product-description">quantity: {quantity}</p>

@@ -11,9 +11,6 @@ const ClientNavigation = () => {
        <Link className="nav-link" to="/user">Home</Link>
      </li>
      <li>
-       <Link className="nav-link" to="/user/history">Purchase history</Link>
-     </li>
-     <li>
        <Link className="nav-link" to="/user/cart">Cart</Link>
      </li>
      <li>
@@ -22,7 +19,12 @@ const ClientNavigation = () => {
      <li>
        <Link className="nav-link" to="/login">Login</Link>
      </li>
-     
+     <li>
+       <Link className="nav-link" to="/user/history/Shipped">Shipped orders</Link>
+     </li>
+     <li>
+       <Link className="nav-link" to="/user/history/notShipped">not Shipped yet orders</Link>
+     </li>
    </ul>
  </nav>
 
