@@ -51,6 +51,7 @@ function Login() {
           username: username,
           password: password,
         });
+        console.log("user logged in request : ", response);
       } else if (role === "user") {
         // response = await login(userData, "http://localhost:4000/signin");
         response = await axiosClient.post("/signin", userData);

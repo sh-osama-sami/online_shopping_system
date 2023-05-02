@@ -8,13 +8,14 @@ const CompanyNavigation = () => {
         {/* <h1 className="logo">My Store</h1> */}
         <ul  className="nav-links">
           <li>
-            <Link className="nav-link" to="/company">Home</Link>
-          </li>
-          <li>
             <Link className="nav-link" to="/addProduct">add new product </Link>
           </li>
           <li>
           <Link className="nav-link" to="/ViewInstock">view in stock products </Link>
+
+          </li>
+          <li>
+          <Link className="nav-link" to="/viewSold">view sold products </Link>
 
           </li>
           

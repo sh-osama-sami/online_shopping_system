@@ -16,7 +16,9 @@ const ViewInStockProducts = () => {
   
       fetchProducts();
     }, []);
-
+    if (products.length === 0) {
+      return <div className='alert'>No old orders to show</div>;
+    }
     return(
 <div className="stock-container">
   <h1>Stock Products</h1>
@@ -34,7 +36,7 @@ const ViewInStockProducts = () => {
   </div>
 </div>
 
-
+//Dior	jaKF54QY
     )
 //   return (
 //     <div className="stock-container">

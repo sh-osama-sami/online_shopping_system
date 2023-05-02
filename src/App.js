@@ -11,7 +11,6 @@ import RequiredAuth from "./features/auth/RequiredAuth";
 import Unauthorised from "./features/auth/Unauthorised";
 import AdminHome from "./features/admin/AdminHome";
 import axiosClient, { axiosSelling } from "./api/axios";
-import CompanyHome from "./features/company/CompanyHome";
 import AddProduct from "./features/company/AddProduct";
 import ViewInStockProducts from "./features/company/ViewInStockProducts";
 import CreateCompany from "./features/admin/AddCompany";
@@ -22,6 +21,7 @@ import ShippingCompanies from "./features/admin/ListShipping";
 import Users from "./features/admin/Users";
 import SellingCompanies from "./features/admin/ListSelling";
 import NotShippedPurchases from "./features/customer/NotShippedPurchases";
+import ViewSoldProducts from "./features/company/ViewSoldProducts";
 const name = "item";
 function App() {
   const [items, setItems] = useState([ ]);
@@ -94,9 +94,10 @@ function App() {
       </Route>
 
       <Route element={<RequiredAuth allowedRoles={["company"]} />}>
-        <Route path="/company" element={<CompanyHome />} />
         <Route path="/addProduct" element= {<AddProduct/>}/>
         <Route path = "/ViewInstock" element= {<ViewInStockProducts/>}/>
+        <Route path = "/viewSold" element= {<ViewSoldProducts/>}/>
+
         
       </Route> 
 
