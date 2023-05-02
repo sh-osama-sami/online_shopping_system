@@ -4,7 +4,7 @@ import Cookies from 'js-cookie';
 
 const sessionId = Cookies.get('JSESSIONID');
 export const axiosClient = axios.create({
-    baseURL: 'http://localhost:4000/',
+    baseURL: 'https://customerservice-lepf.onrender.com/',
     headers: {
         'Content-type': 'application/json',
          Cookie: `JSESSIONID=${sessionId}`

@@ -34,12 +34,12 @@ const CreateCompany = () => {
     event.preventDefault();
 
     try {
-      await axiosSelling.post('/admin/createselling', {
+     const response = await axiosSelling.post('/admin/createselling', {
         
         username,
        
       });
-      setSuccessMessage("Company created successfully");
+      setSuccessMessage(response.data);
       console.log('Company created successfully');
 
       // Clear form fields
