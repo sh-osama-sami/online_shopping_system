@@ -43,7 +43,7 @@ function NotShippedPurchases() {
 
   return (
     <div className="previous-purchases-container">
-      <h2>not yet Shipped Purchases</h2>
+      <h2>Not yet Shipped Purchases</h2>
       {purchases.map((purchase) => (
         <div key={purchase.id} className="purchase">
           <div className="purchase-details">

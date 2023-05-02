@@ -69,7 +69,7 @@ const ShippingCompany = () => {
             <th>Customer Name</th>
             <th>Customer Address</th>
             <th>total</th>
-            <th>Order products</th>
+        
             <th>Shipping Status</th>
             <th>Action</th>
           </tr>
@@ -82,9 +82,7 @@ const ShippingCompany = () => {
               <td>{order.customerName}</td>
               <td>{order.customerAddress}</td>
               <td>{order.total}</td>
-              <td>
-                {order.products ? <ProductDetails products={order.products} /> : "No products available"}
-              </td>
+             
               <td>{order.shipped?.toString() ?? "N/A"}</td>
               <td>
                 {!order.shipped && (

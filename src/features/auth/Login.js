@@ -161,6 +161,7 @@ function Login() {
           <button type="submit" className="login-btn">
             Login
           </button>
+          <p className="error">{errMsg}</p>
         </form>
         <p>
           Need an Account?

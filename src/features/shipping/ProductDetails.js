@@ -6,8 +6,6 @@ const ProductDetails = ({ products }) => {
       {products.map((product) => (
         <div key={product.id}>
           <div>{product.name}</div>
-            <div>{product.price}</div>
-            <div>{product.quantity}</div>
             
         </div>
       ))}
