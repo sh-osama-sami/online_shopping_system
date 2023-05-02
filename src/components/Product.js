@@ -5,12 +5,12 @@ import useAuth from '../hooks/useAuth';
 
 function Product({ product  }) {
   const auth = useAuth();
-    const { id , isAvailableForSale, name, price, quantity ,quantitySold ,SellingCompany_id ,imageUrl  } = product;
-  
+    const { id , isAvailableForSale, name, price, quantity ,quantitySold ,sellingCompany ,imageUrl  } = product;
+
     const [cartItems, setCartItems] = useState([]);
     const handleAddToCart = async (product) => {
       
-      console.log("add to cart"+ id +" "+name+" "+price+" "+quantity+" "+quantitySold+" "+isAvailableForSale+" "+SellingCompany_id);
+      console.log("add to cart"+ id +" "+name+" "+price+" "+quantity+" "+quantitySold+" "+isAvailableForSale+" ");
         const response =await axiosClient.post("/addToOrder",{
           "id":id,
           "isAvailableForSale":isAvailableForSale,
@@ -18,9 +18,9 @@ function Product({ product  }) {
           "price":price,
           "quantity":quantity,
           "quantitySold":quantitySold,
+          "imageUrl":imageUrl,
+          "sellingCompany":sellingCompany,
 
-          
-          
         
         });
         console.log(response.data);

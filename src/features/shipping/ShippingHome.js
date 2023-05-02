@@ -27,9 +27,14 @@ const ShippingCompany = () => {
     try {
       const response = await axiosSelling.post(`/shipping/shipOrder`, {
         _id: order._id,
+        id: order.id,
         total: order.total,
         shipped: order.shipped,
         completed: order.completed,
+        customerName: order.customerName,
+        customerAddress: order.customerAddress,
+        shippingCompany : order.shippingCompany,
+        products : order.products
       });
       console.log(`Order  processed:`, response.data);
       // Update orders state
