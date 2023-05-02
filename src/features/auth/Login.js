@@ -71,14 +71,13 @@ function Login() {
         // const decoded = jwt.verify(token, 'mysecretkey');
         // console.log(decoded);
         // localStorage.setItem('token', token);
-      } else if (role === "shipping") {
+      }else if (role === "shipping") {
         response = await axiosSelling.post("/shipping/login", {
           username: username,
           password: password,
         });
+        localStorage.setItem("id", response.data); // Save the returned id directly (since it is not nested in an object)
         console.log("user logged in request : ", response);
-        // navigate("/shipping", { replace: true });
-        // setAuth({ email, password, role });
       }
 
       if (response.data.error) {

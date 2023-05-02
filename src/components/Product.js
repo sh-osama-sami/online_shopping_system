@@ -2,9 +2,10 @@ import React from 'react'
 import { useState } from 'react';
 import { axiosClient, axiosSelling}  from "../api/axios";
 import useAuth from '../hooks/useAuth';
+
 function Product({ product  }) {
   const auth = useAuth();
-    const { id , isAvailableForSale, name, price, quantity ,quantitySold ,SellingCompany_id ,ImageUrl  } = product;
+    const { id , isAvailableForSale, name, price, quantity ,quantitySold ,SellingCompany_id ,imageUrl  } = product;
   
     const [cartItems, setCartItems] = useState([]);
     const handleAddToCart = async (product) => {
@@ -32,7 +33,7 @@ function Product({ product  }) {
   
     return (
       <div className="product">
-        <img src={ImageUrl}  className="product-image" />
+        <img src={imageUrl}  className="product-image" />
         <div className="product-details">
           <h3 className="product-title"> {name}</h3>
           <p className="product-description">quantity: {quantity}</p>

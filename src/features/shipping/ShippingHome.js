@@ -2,15 +2,18 @@ import React, { useState, useEffect } from "react";
 import { axiosSelling } from "../../api/axios";
 import ProductDetails from "./ProductDetails";
 
-const ShippingCompany = (shippingCompanyId) => {
+const ShippingCompany = () => {
   const [orders, setOrders] = useState([]);
   const [showProductDetails, setShowProductDetails] = useState(false);
   const [product, setProduct] = useState(null);
+  const id = localStorage.getItem("id");
   // const [order, setOrder] = useState(null);
   useEffect(() => {
     async function fetchOrders() {
       try {
-        const response = await axiosSelling.get(`/shipping/getOrderRequests`);
+        const response = await axiosSelling.get(
+          `/shipping/getOrderRequests/${id}` // Pass the shippingCompanyId as a URL parameter
+        );
         setOrders(response.data);
       } catch (error) {
         console.error("Error fetching orders:", error.message);
@@ -19,10 +22,11 @@ const ShippingCompany = (shippingCompanyId) => {
     fetchOrders();
   }, []);
 
+
   const handleOrderProcessing = async (order) => {
     try {
       const response = await axiosSelling.post(`/shipping/shipOrder`, {
-        id: order.id,
+        _id: order._id,
         total: order.total,
         shipped: order.shipped,
         completed: order.completed,
@@ -39,7 +43,7 @@ const ShippingCompany = (shippingCompanyId) => {
       //   )
 
       // );
-      
+
       // Notify user
       alert(`Order processed successfully.`);
     } catch (error) {
@@ -67,16 +71,16 @@ const ShippingCompany = (shippingCompanyId) => {
         </thead>
         <tbody>
           {orders.map((order) => (
-           
+
             <tr key={order.id}>
               {/* <td>{order.id}</td> */}
               <td>{order.customerName}</td>
               <td>{order.customerAddress}</td>
               <td>{order.total}</td>
               <td>
-                <ProductDetails products={order.products} />
+                {order.products ? <ProductDetails products={order.products} /> : "No products available"}
               </td>
-              <td>{order.shipped.toString()}</td>
+              <td>{order.shipped?.toString() ?? "N/A"}</td>
               <td>
                 {!order.shipped && (
                   <button
@@ -87,7 +91,7 @@ const ShippingCompany = (shippingCompanyId) => {
                   </button>
                 )}
               </td>
-           
+
             </tr>
           ))}
         </tbody>
@@ -239,3 +243,77 @@ export default ShippingCompany;
 //         ]
 //     }
 // 5odi 2li rag3 mn al getOrderRequests we 5odi one instance 7oteha fe al ship order
+
+
+
+// {
+//   "id": 18,
+//   "shipped": false,
+//   "total": 46,
+//   "completed": false,
+//   "_id": "6450e4d08a6c3c7f26b4b778",
+//   "customerName": "luxorUser@gmail.com",
+//   "customerAddress": "luxor",
+//   "shippingCompany": {
+//       "id": 9,
+//       "username": "pass",
+//       "password": "pass",
+//       "locations": [
+//           "luxor"
+//       ],
+//       "products": [],
+//       "admin": {
+//           "id": 1,
+//           "role": null,
+//           "username": "admin",
+//           "password": "password"
+//       }
+//   },
+//   "sellingCompany": null,
+//   "products": [
+//       {
+//           "id": 3,
+//           "name": "shampoo",
+//           "price": 46,
+//           "sellingCompany": null,
+//           "shippingCompany": null,
+//           "customerOrders": [
+//               18,
+//               {
+//                   "id": 22,
+//                   "shipped": false,
+//                   "total": 46,
+//                   "completed": false,
+//                   "_id": "6450e98c8a6c3c7f26b4b7a4",
+//                   "customerName": "luxorUser@gmail.com",
+//                   "customerAddress": "luxor",
+//                   "shippingCompany": {
+//                       "id": 9,
+//                       "username": "pass",
+//                       "password": "pass",
+//                       "locations": [
+//                           "luxor"
+//                       ],
+//                       "products": [],
+//                       "admin": {
+//                           "id": 1,
+//                           "role": null,
+//                           "username": "admin",
+//                           "password": "password"
+//                       }
+//                   },
+//                   "sellingCompany": null,
+//                   "products": [
+//                       3
+//                   ]
+//               }
+//           ],
+//           "isAvailableForSale": true,
+//           "quantity": 19,
+//           "quantitySold": 0,
+//           "imageUrl": null,
+//           "shipped": false,
+//           "availableForSale": true
+//       }
+//   ]
+// }
