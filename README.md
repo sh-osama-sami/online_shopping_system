@@ -1,70 +1,40 @@
-# Getting Started with Create React App
+# E-Commerce Website with Microservice Architecture
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Welcome to the E-Commerce Website project! This feature-rich platform is designed to cater to four distinct user types: customers, shipping companies, selling companies, and administrators. Each user type enjoys a tailored set of functionalities to enhance their experience.
 
-## Available Scripts
+## Overview
 
-In the project directory, you can run:
+This project is developed using a sophisticated microservice architecture, leveraging technologies such as React.js for the frontend, Node.js for backend services, and Java EE with JBoss server for handling core functionalities. The microservice architecture ensures scalability, flexibility, and modularity, allowing for easy maintenance and future enhancements.
 
-### `npm start`
+## Features
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### For Customers
+- Browse and search products
+- View product details and images
+- Add products to cart
+- Checkout and place orders
+- View order history and track shipments
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### For Shipping Companies
+- Receive orders for delivery
+- Update order status and tracking information
+- Communicate with customers regarding delivery schedules
 
-### `npm test`
+### For Selling Companies
+- Add and manage products
+- Set product prices and inventory
+- Monitor sales and revenue
+- Manage orders and shipments
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### For Administrators
+- Manage user accounts and permissions
+- Monitor system performance and logs
+- Analyze sales data and trends
+- Configure system settings and preferences
 
-### `npm run build`
+## Technology Stack
+- Frontend: React.js
+- Backend Services: Node.js
+- Core Functionality: Java EE with JBoss server
+- Database: (Mysql , Mongodb)
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
